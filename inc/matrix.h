@@ -25,8 +25,9 @@
 /* # define MAXY 35 */
 
 # define DRIPS 50000
-# define PROB_SPAWN 1.0
-# define PROB_DIM 0.15
+# define SPEED_SPAWN 6
+# define PROB_SPAWN .95
+# define PROB_DIM 0.50
 # define PROB_DIM_MAXED 1
 # define PROB_CHANGE 0.95
 
@@ -54,7 +55,7 @@ typedef struct	s_drip
 
 int		init_ui(WINDOW *uiwindow);
 void	clean_ui();
-void	show_matrix(t_cell matrix[MAXX][MAXY]);
+int		show_matrix(t_cell matrix[MAXX][MAXY]);
 
 void	matrix_run();
 void	matrix_init(t_cell matrix[MAXX][MAXY]);

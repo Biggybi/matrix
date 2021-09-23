@@ -70,13 +70,15 @@ void clean_ui(WINDOW *uiwindow)
 	refresh();
 }
 
-void show_matrix(t_cell matrix[MAXX][MAXY])
+int show_matrix(t_cell matrix[MAXX][MAXY])
 {
 	int i;
 	int j;
 	int intensity;
 	int color_map[MAX_INTENSITY + 1] = COLOR_MAP;
+	int nb_shown;
 
+	nb_shown = 0;
 	i = -1;
 	while (++i < MAXX)
 	{
@@ -86,7 +88,10 @@ void show_matrix(t_cell matrix[MAXX][MAXY])
 			intensity = matrix[i][j].intensity;
 			color_set(color_map[intensity], 0);
 			mvaddch(j, i, matrix[i][j].character);
+			if (color_map[intensity] != MIN_INTENSITY)
+				nb_shown += 1;
 		}
 	}
 	refresh();
+	return (nb_shown);
 }

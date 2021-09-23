@@ -102,7 +102,12 @@ void drips_update(t_cell matrix[MAXX][MAXY], t_drip drips[])
 
 void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_spawn)
 {
-	drips_add(drips, prob_spawn--);
+	int i;
+
+	i = -1;
+	while (++i < SPEED_SPAWN)
+		drips_add(drips, prob_spawn);
+	prob_spawn--;
 	drips_update(matrix, drips);
 	change_matrix(matrix);
 }
@@ -129,15 +134,18 @@ void matrix_run()
 	t_cell	matrix[MAXX][MAXY];
 	t_drip	drips[DRIPS];
 	float	prob_spawn;
+	int		nb_shown;
 
 	prob_spawn = PROB_SPAWN;
 	matrix_init(matrix);
 	drip_init(drips);
-	while (1)
+	nb_shown = 1;
+	while (nb_shown)
 	{
 		matrix_update(matrix, drips, prob_spawn);
 		prob_spawn -= DECAY_STEP;
-		show_matrix(matrix);
+		nb_shown = show_matrix(matrix);
 		usleep(REFRESH);
+		dprintf(1, "%d\n", nb_shown);
 	}
 }
