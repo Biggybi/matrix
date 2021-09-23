@@ -126,9 +126,9 @@ void matrix_init(t_cell matrix[MAXX][MAXY])
 
 void matrix_run()
 {
-	t_cell matrix[MAXX][MAXY];
-	t_drip drips[DRIPS];
-	float prob_spawn;
+	t_cell	matrix[MAXX][MAXY];
+	t_drip	drips[DRIPS];
+	float	prob_spawn;
 
 	prob_spawn = PROB_SPAWN;
 	matrix_init(matrix);
@@ -136,7 +136,7 @@ void matrix_run()
 	while (1)
 	{
 		matrix_update(matrix, drips, prob_spawn);
-		prob_spawn -= DECAY_DELAY;
+		prob_spawn -= DECAY_STEP;
 		show_matrix(matrix);
 		usleep(REFRESH);
 	}

@@ -30,7 +30,8 @@
 # define PROB_DIM_MAXED 1
 # define PROB_CHANGE 0.95
 
-# define DECAY_DELAY 0.000
+# define DECAY_STEP 0.000
+# define DECAY_DELAY 10000L
 
 # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 3, 6}
 /* # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6} */
