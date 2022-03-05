@@ -146,6 +146,6 @@ void matrix_run()
 		prob_spawn -= DECAY_STEP;
 		nb_shown = show_matrix(matrix);
 		usleep(REFRESH);
-		dprintf(1, "%d\n", nb_shown);
+		/* dprintf(1, "%d\n", nb_shown); */
 	}
 }
