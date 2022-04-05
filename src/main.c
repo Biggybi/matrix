@@ -13,12 +13,14 @@
 #include "matrix.h"
 /* #include "ui.h" */
 
-int		main()
+int		main(int ac, char **av)
 {
 	WINDOW *uiwindow;
+	char user_color;
 
-	uiwindow = 0;
-	if (!init_ui(uiwindow))
+	srand(time(NULL));
+    user_color = (ac > 1) ? av[1][0] : 'g';
+	if (!init_ui(uiwindow = 0, user_color))
 		return (EXIT_FAILURE);
 	matrix_run();
 	clean_ui(uiwindow);

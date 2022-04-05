@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdint.h>
+# include <time.h>
 
 # define REFRESH 50000L
 
@@ -53,8 +54,9 @@ typedef struct	s_drip
 	int			bright;
 }				t_drip;
 
-int		init_ui(WINDOW *uiwindow);
+int		init_ui(WINDOW *uiwindow, char user_color);
 void	clean_ui();
+void	set_colors(char user_color);
 int		show_matrix(t_cell matrix[MAXX][MAXY]);
 
 void	matrix_run();

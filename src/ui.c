@@ -14,41 +14,7 @@
 #include "matrix.h"
 /* #include <curses.h> */
 
-void set_colors()
-{
-	int i;
-
-	i = -1;
-	while (++i < 8)
-		init_pair(i + 1, i, COLOR_BLACK);
-
-	/* green */
-	i = -1;
-	while (++i <= 5)
-		init_color(i, 0, i * 200, 0);
-	init_color(6, 800, 1000, 800);
-
-	/* /1* red *1/ */
-	/* i = -1; */
-	/* while (++i <= 5) */
-	/* 	init_color(i, i * 200, 0, 0); */
-	/* /1* init_color(6, 1000, 800, 800); *1/ */
-
-	/* /1* blue *1/ */
-	/* i = -1; */
-	/* while (++i <= 5) */
-	/* 	init_color(i, 0, 0, i * 200); */
-	/* init_color(6, 800, 800, 1000); */
-
-	/* /1* light blue *1/ */
-	/* i = -1; */
-	/* while (++i <= 5) */
-	/* 	init_color(i, 0, 0, i * 200); */
-	/* init_color(6, 800, 800, 0); */
-
-}
-
-int init_ui(WINDOW *uiwindow)
+int init_ui(WINDOW *uiwindow, char user_color)
 {
 	uiwindow = initscr();
 	if (!uiwindow)
@@ -59,7 +25,7 @@ int init_ui(WINDOW *uiwindow)
 		dprintf(1, "Color support not available.");
 		return (0);
 	}
-	set_colors();
+	set_colors(user_color);
 	return (1);
 }
 
