@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tris <tris@tristankapous.com>              +#+  +:+       +#+        */
+/*   By: biggybi <biggybi@protonmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/11 16:07:16 by tris              #+#    #+#             */
-/*   Updated: 2021/09/11 16:07:16 by tris             ###   ########lyon.fr   */
+/*   Created: 2022/04/06 00:19:23 by biggybi           #+#    #+#             */
+/*   Updated: 2022/04/06 00:19:23 by biggybi          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-int		main(int ac, char **av)
+double rand01()
 {
-	WINDOW *uiwindow;
-	char user_color;
-
-	srand(time(NULL));
-    user_color = (ac > 1) ? av[1][0] : 'g';
-	if (!init_ui(uiwindow = 0, user_color))
-		return (EXIT_FAILURE);
-	matrix_run();
-	clean_ui(uiwindow);
-	return (EXIT_SUCCESS);
+	return ((double)rand() / (double)RAND_MAX);
 }
+
+char randchar()
+{
+	return (33 + (rand() % (127 - 32)));
+}
+

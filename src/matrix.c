@@ -11,28 +11,8 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
-/* #include "ui.h" */
 
-void drip_init(t_drip drips[])
-{
-	int i;
-
-	i = -1;
-	while (++i < DRIPS)
-		drips[i].live = 0;
-}
-
-double rand01()
-{
-	return ((double)rand() / (double)RAND_MAX);
-}
-
-char randchar()
-{
-	return (33 + (rand() % (127 - 32)));
-}
-
-void intensity_reduce(t_cell *cell)
+static void intensity_reduce(t_cell *cell)
 {
 	if ((cell->intensity == MAX_INTENSITY) && (rand01() < PROB_DIM_MAXED))
 		cell->intensity--;
@@ -40,13 +20,13 @@ void intensity_reduce(t_cell *cell)
 		cell->intensity--;
 }
 
-void init_char(t_cell *cell)
+static void init_char(t_cell *cell)
 {
 	if (!cell->character || rand01() < PROB_CHANGE)
 		cell->character = randchar();
 }
 
-void change_matrix(t_cell matrix[MAXX][MAXY])
+static void change_matrix(t_cell matrix[MAXX][MAXY])
 {
 	int		i;
 	int		j;
@@ -63,44 +43,7 @@ void change_matrix(t_cell matrix[MAXX][MAXY])
 	}
 }
 
-void drips_add(t_drip drips[], float prob_spawn)
-{
-	int		i;
-	int		margin;
-
-	margin = rand() % (MAXY - MAX_TOP_MARGIN);
-	if (rand01() > prob_spawn)
-		return ;
-	i = 0;
-	while (i < DRIPS && drips[i].live)
-		i++;
-	drips[i].live = 1;
-	drips[i].x = rand() % MAXX;
-	if (rand01() < PROB_SPAWN_MIDDLE && margin > 0)
-		drips[i].y = margin;
-	else
-		drips[i].y = 0;
-	drips[i].bright = rand() % 2;
-}
-
-void drips_update(t_cell matrix[MAXX][MAXY], t_drip drips[])
-{
-	int		i;
-
-	i = -1;
-	while (++i < DRIPS)
-		if (drips[i].live)
-		{
-			if (drips[i].bright)
-				matrix[drips[i].x][drips[i].y].intensity = MAX_INTENSITY;
-			else
-				matrix[drips[i].x][drips[i].y].intensity = MIN_INTENSITY;
-			if (++drips[i].y >= MAXY - 1)
-				drips[i].live = 0;
-		}
-}
-
-void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_spawn)
+static void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_spawn)
 {
 	int i;
 
@@ -127,6 +70,32 @@ void matrix_init(t_cell matrix[MAXX][MAXY])
 			matrix[i][j].intensity = 0;
 		}
 	}
+}
+
+static int show_matrix(t_cell matrix[MAXX][MAXY])
+{
+	int i;
+	int j;
+	int intensity;
+	int color_map[MAX_INTENSITY + 1] = COLOR_MAP;
+	int nb_shown;
+
+	nb_shown = 0;
+	i = -1;
+	while (++i < MAXX)
+	{
+		j = -1;
+		while (++j < MAXY)
+		{
+			intensity = matrix[i][j].intensity;
+			color_set(color_map[intensity], 0);
+			mvaddch(j, i, matrix[i][j].character);
+			if (color_map[intensity] != MIN_INTENSITY)
+				nb_shown += 1;
+		}
+	}
+	refresh();
+	return (nb_shown);
 }
 
 void matrix_run()
