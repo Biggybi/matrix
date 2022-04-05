@@ -54,10 +54,10 @@ typedef struct	s_drip
 	int			bright;
 }				t_drip;
 
-int		init_ui(WINDOW *uiwindow, char user_color);
-void	clean_ui();
+int		ui_init(WINDOW *uiwindow, char user_color);
+void	ui_clean();
 
-void	set_colors(char user_color);
+void	colors_set(char user_color);
 
 void	matrix_run();
 
@@ -65,7 +65,7 @@ void    drips_add(t_drip drips[], float prob_spawn);
 void    drips_update(t_cell matrix[MAXX][MAXY], t_drip drips[]);
 void    drip_init(t_drip drips[]);
 
-double	rand01();
+double	rand_zero_to_one();
 char	randchar();
 
 #endif

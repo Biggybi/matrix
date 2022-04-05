@@ -14,19 +14,19 @@
 
 static void intensity_reduce(t_cell *cell)
 {
-	if ((cell->intensity == MAX_INTENSITY) && (rand01() < PROB_DIM_MAXED))
+	if ((cell->intensity == MAX_INTENSITY) && (rand_zero_to_one() < PROB_DIM_MAXED))
 		cell->intensity--;
-	else if ((cell->intensity > 0) && (rand01() < PROB_DIM))
+	else if ((cell->intensity > 0) && (rand_zero_to_one() < PROB_DIM))
 		cell->intensity--;
 }
 
 static void init_char(t_cell *cell)
 {
-	if (!cell->character || rand01() < PROB_CHANGE)
+	if (!cell->character || rand_zero_to_one() < PROB_CHANGE)
 		cell->character = randchar();
 }
 
-static void change_matrix(t_cell matrix[MAXX][MAXY])
+static void matrix_set(t_cell matrix[MAXX][MAXY])
 {
 	int		i;
 	int		j;
@@ -52,10 +52,10 @@ static void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_
 		drips_add(drips, prob_spawn);
 	prob_spawn--;
 	drips_update(matrix, drips);
-	change_matrix(matrix);
+	matrix_set(matrix);
 }
 
-void matrix_init(t_cell matrix[MAXX][MAXY])
+static void matrix_init(t_cell matrix[MAXX][MAXY])
 {
 	int		i;
 	int		j;
@@ -72,7 +72,7 @@ void matrix_init(t_cell matrix[MAXX][MAXY])
 	}
 }
 
-static int show_matrix(t_cell matrix[MAXX][MAXY])
+static int matrix_show(t_cell matrix[MAXX][MAXY])
 {
 	int i;
 	int j;
@@ -113,8 +113,7 @@ void matrix_run()
 	{
 		matrix_update(matrix, drips, prob_spawn);
 		prob_spawn -= DECAY_STEP;
-		nb_shown = show_matrix(matrix);
+		nb_shown = matrix_show(matrix);
 		usleep(REFRESH);
-		/* dprintf(1, "%d\n", nb_shown); */
 	}
 }

@@ -14,7 +14,7 @@
 #include "matrix.h"
 /* #include <curses.h> */
 
-int init_ui(WINDOW *uiwindow, char user_color)
+int ui_init(WINDOW *uiwindow, char user_color)
 {
 	uiwindow = initscr();
 	if (!uiwindow)
@@ -25,11 +25,11 @@ int init_ui(WINDOW *uiwindow, char user_color)
 		dprintf(1, "Color support not available.");
 		return (0);
 	}
-	set_colors(user_color);
+	colors_set(user_color);
 	return (1);
 }
 
-void clean_ui(WINDOW *uiwindow)
+void ui_clean(WINDOW *uiwindow)
 {
 	delwin(uiwindow);
 	endwin();

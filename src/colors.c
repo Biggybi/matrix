@@ -21,7 +21,7 @@ static void fade_colors(int r, int g, int b)
 		init_color(i, i * r, i * g, i * b);
 }
 
-void set_colors(char user_color)
+void colors_set(char user_color)
 {
 	int i;
 	i = -1;

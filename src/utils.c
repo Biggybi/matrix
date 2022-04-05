@@ -12,7 +12,7 @@
 
 #include "matrix.h"
 
-double rand01()
+double rand_zero_to_one()
 {
 	return ((double)rand() / (double)RAND_MAX);
 }

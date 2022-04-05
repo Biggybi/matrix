@@ -19,9 +19,9 @@ int		main(int ac, char **av)
 
 	srand(time(NULL));
     user_color = (ac > 1) ? av[1][0] : 'g';
-	if (!init_ui(uiwindow = 0, user_color))
+	if (!ui_init(uiwindow = 0, user_color))
 		return (EXIT_FAILURE);
 	matrix_run();
-	clean_ui(uiwindow);
+	ui_clean(uiwindow);
 	return (EXIT_SUCCESS);
 }

@@ -15,14 +15,14 @@ void drips_add(t_drip drips[], float prob_spawn)
 	int		margin;
 
 	margin = rand() % (MAXY - MAX_TOP_MARGIN);
-	if (rand01() > prob_spawn)
+	if (rand_zero_to_one() > prob_spawn)
 		return ;
 	i = 0;
 	while (i < DRIPS && drips[i].live)
 		i++;
 	drips[i].live = 1;
 	drips[i].x = rand() % MAXX;
-	if (rand01() < PROB_SPAWN_MIDDLE && margin > 0)
+	if (rand_zero_to_one() < PROB_SPAWN_MIDDLE && margin > 0)
 		drips[i].y = margin;
 	else
 		drips[i].y = 0;
