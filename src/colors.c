@@ -24,13 +24,21 @@ void colors_apply()
         init_color(i, i * color.r, i * color.g, i * color.b);
 }
 
+void color_shift(int *rgb, int *rgb_up)
+{
+    *rgb_up = (*rgb_up >= 200 && *rgb_up == 1) ? -1 : *rgb_up;
+    *rgb_up = (*rgb_up <= 0 && *rgb_up == -1) ? 1 : *rgb_up;
+    *rgb += *rgb_up * COLOR_SHIFT_STEP;
+    if (*rgb > 200) *rgb = 200;
+    if (*rgb < 0) *rgb = 0;
+}
+
 void colors_shift()
 {
-    static int r_up = 1;
-    static int g_up = 1;
-    static int b_up = 1;
     int selected_color;
 
+    if (COLOR_SHIFT_STEP == 0)
+        return ;
     if (COLOR_SHIFT_RATE > 0 && cycles % COLOR_SHIFT_RATE != 0)
     {
         cycles++;
@@ -38,67 +46,46 @@ void colors_shift()
     }
     selected_color = rand() % 3;
     if (selected_color == 0)
-    {
-        r_up = (color.r >= 200 && r_up == 1) ? -1 : r_up;
-        r_up = (color.r <= 0 && r_up == -1) ? 1 : r_up;
-        color.r += r_up * COLOR_SHIFT_STEP;
-    }
+        color_shift(&color.r, &color.r_up);
     if (selected_color == 1)
-    {
-        g_up = (color.g >= 200 && g_up == 1) ? -1 : g_up;
-        g_up = (color.g <= 0 && g_up == -1) ? 1 : g_up;
-        color.g += g_up * COLOR_SHIFT_STEP;
-    }
+        color_shift(&color.g, &color.g_up);
     if (selected_color == 2)
-    {
-        b_up = (color.b >= 200 && b_up == 1) ? -1 : b_up;
-        b_up = (color.b <= 0 && b_up == -1) ? 1 : b_up;
-        color.b += b_up * COLOR_SHIFT_STEP;
-    }
-    if (color.r > 200) color.r = 200;
-    if (color.g > 200) color.g = 200;
-    if (color.b > 200) color.b = 200;
-    if (color.r < 0) color.r = 0;
-    if (color.g < 0) color.g = 0;
-    if (color.b < 0) color.b = 0;
+        color_shift(&color.b, &color.b_up);
     cycles++;
     colors_apply();
 }
 
-void colors_init(char user_color)
+void color_init(int r, int g, int b)
+{
+    color = (t_color){.r = r, .g = g, .b = b, .r_up = 1, .g_up = 1, .b_up = 1};
+}
+
+void void_color_init()
 {
     int i;
 
     i = -1;
     while (++i < 8)
         init_pair(i + 1, i, COLOR_BLACK);
-    if (user_color == 'w')
-        color = (t_color){.r = 200, .g = 200, .b = 200};
-    else if (user_color == 'g')
-        color = (t_color){.r = 0, .g = 200, .b = 0};
-    else if (user_color == 'G')
-        color = (t_color){.r = 0, .g = 100, .b = 0};
-    else if (user_color == 'r')
-        color = (t_color){.r = 200, .g = 0, .b = 0};
-    else if (user_color == 'R')
-        color = (t_color){.r = 100, .g = 0, .b = 0};
-    else if (user_color == 'B')
-        color = (t_color){.r = 0, .g = 0, .b = 200};
-    else if (user_color == 'b')
-        color = (t_color){.r = 0, .g = 200, .b = 200};
-    else if (user_color == 'm')
-        color = (t_color){.r = 200, .g = 0, .b = 200};
-    else if (user_color == 'M' || user_color == 'p')
-        color = (t_color){.r = 100, .g = 0, .b = 100};
-    else if (user_color == 'y')
-        color = (t_color){.r = 200, .g = 200, .b = 0};
-    else if (user_color == 'Y')
-        color = (t_color){.r = 200, .g = 200, .b = 100};
-    else if (user_color == 'o')
-        color = (t_color){.r = 200, .g = 100, .b = 0};
-    else if (user_color == 'O')
-        color = (t_color){.r = 100, .g = 50, .b = 0};
-    else if (user_color == '?')
-        color = (t_color){.r = rand() % 200, .g = rand() % 200, .b = rand() % 200};
+}
+
+void colors_init(char user_color)
+{
+    void_color_init();
+    if (user_color == 'w') color_init(200, 200, 200);
+    if (user_color == 'g') color_init(0,   200, 0);
+    if (user_color == 'G') color_init(0,   100, 0);
+    if (user_color == 'r') color_init(200, 0,   0);
+    if (user_color == 'R') color_init(100, 0,   0);
+    if (user_color == 'B') color_init(0,   0,   200);
+    if (user_color == 'b') color_init(0,   200, 200);
+    if (user_color == 'm') color_init(200, 0,   200);
+    if (user_color == 'M') color_init(100, 0,   100);
+    if (user_color == 'p') color_init(100, 0,   100);
+    if (user_color == 'y') color_init(200, 200, 0);
+    if (user_color == 'Y') color_init(200, 200, 100);
+    if (user_color == 'o') color_init(200, 100, 0);
+    if (user_color == 'O') color_init(100, 50,  0);
+    if (user_color == '?') color_init(rand() % 200, rand() % 200, rand() % 200);
     colors_apply();
 }

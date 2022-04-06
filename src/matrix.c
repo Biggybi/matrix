@@ -118,3 +118,4 @@ void matrix_run(int color_shift)
         usleep(REFRESH);
     }
 }
+

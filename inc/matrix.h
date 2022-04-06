@@ -15,17 +15,13 @@
 # define MAX_INTENSITY 13
 # define MIN_INTENSITY 1
 
-# define MAXX 260
-# define MAXY 70
+# define MAXX 200
+# define MAXY 60
 
 # define MAX_TOP_MARGIN 0
 # define PROB_SPAWN_MIDDLE 0.2
-/* # define PROB_SPAWN_MIDDLE 1 */
 
-/* # define MAXX 130 */
-/* # define MAXY 35 */
-
-# define DRIPS 50000
+# define DRIPS 100000
 # define SPEED_SPAWN 6
 # define PROB_SPAWN .95
 # define PROB_DIM 0.50
@@ -39,6 +35,7 @@
 # define COLOR_SHIFT_STEP 2
 
 # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 3, 6}
+
 typedef struct	s_cell
 {
 	char		character;
@@ -58,6 +55,9 @@ typedef struct  s_color
 	int r;
 	int g;
 	int b;
+	int r_up;
+	int g_up;
+	int b_up;
 }				t_color;
 
 extern t_color color;

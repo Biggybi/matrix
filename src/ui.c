@@ -33,3 +33,4 @@ void ui_clean(WINDOW *uiwindow)
     endwin();
     refresh();
 }
+

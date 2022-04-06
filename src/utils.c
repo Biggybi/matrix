@@ -22,3 +22,7 @@ char randchar()
     return (33 + (rand() % (127 - 32)));
 }
 
+int rand_color()
+{
+	return (rand() % 200);
+}
