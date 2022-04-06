@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include <stdio.h>
 
 t_color color;
 
@@ -53,7 +52,6 @@ void colors_shift()
         color_shift(&color.b, &color.b_up);
     color.cycles++;
     colors_apply();
-    dprintf(1, "cycles = %d\b", color.cycles);
 }
 
 void color_init(int r, int g, int b)

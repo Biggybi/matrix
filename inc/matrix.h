@@ -1,13 +1,9 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-# include <string.h>
-# include <assert.h>
 # include <curses.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <stdint.h>
 # include <time.h>
 
 # define REFRESH 50000L
