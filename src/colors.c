@@ -57,8 +57,6 @@ void colors_shift()
 
 void color_init(int r, int g, int b)
 {
-    t_color color;
-
     color.r = r;
     color.g = g;
     color.b = b;
@@ -80,19 +78,19 @@ void colors_init(char user_color)
 {
     void_color_init();
     if (user_color == 'w') color_init(200, 200, 200);
-    if (user_color == 'g') color_init(0,   200, 0);
-    if (user_color == 'G') color_init(0,   100, 0);
-    if (user_color == 'r') color_init(200, 0,   0);
-    if (user_color == 'R') color_init(100, 0,   0);
-    if (user_color == 'B') color_init(0,   0,   200);
-    if (user_color == 'b') color_init(0,   200, 200);
-    if (user_color == 'm') color_init(200, 0,   200);
-    if (user_color == 'M') color_init(100, 0,   100);
-    if (user_color == 'p') color_init(100, 0,   100);
-    if (user_color == 'y') color_init(200, 200, 0);
-    if (user_color == 'Y') color_init(200, 200, 100);
-    if (user_color == 'o') color_init(200, 100, 0);
-    if (user_color == 'O') color_init(100, 50,  0);
-    if (user_color == '?') color_init(rand() % 200, rand() % 200, rand() % 200);
+    else if (user_color == 'g') color_init(0,   200, 0);
+    else if (user_color == 'G') color_init(0,   100, 0);
+    else if (user_color == 'r') color_init(200, 0,   0);
+    else if (user_color == 'R') color_init(100, 0,   0);
+    else if (user_color == 'B') color_init(0,   0,   200);
+    else if (user_color == 'b') color_init(0,   200, 200);
+    else if (user_color == 'm') color_init(200, 0,   200);
+    else if (user_color == 'M') color_init(100, 0,   100);
+    else if (user_color == 'p') color_init(100, 0,   100);
+    else if (user_color == 'y') color_init(200, 200, 0);
+    else if (user_color == 'Y') color_init(200, 200, 100);
+    else if (user_color == 'o') color_init(200, 100, 0);
+    else if (user_color == 'O') color_init(100, 50,  0);
+    else if (user_color == '?') color_init(rand() % 200, rand() % 200, rand() % 200);
     colors_apply();
 }
