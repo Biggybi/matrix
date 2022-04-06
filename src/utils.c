@@ -24,6 +24,6 @@ char randchar()
 
 int rand_color()
 {
-	return (rand() % 200);
+	return (rand() % COLOR_MAX);
 }
 

@@ -13,7 +13,7 @@
 #include "matrix.h"
 t_color color;
 
-void colors_apply()
+static void colors_apply()
 {
     int i;
 
@@ -22,13 +22,22 @@ void colors_apply()
         init_color(i, i * color.r, i * color.g, i * color.b);
 }
 
-void color_shift(int *rgb, int *rgb_up)
+static void void_color_apply()
 {
-    *rgb_up = (*rgb >= 200 && *rgb_up == 1) ? -1 : *rgb_up;
-    *rgb_up = (*rgb <= 0 && *rgb_up == -1) ? 1 : *rgb_up;
+    int i;
+
+    i = -1;
+    while (++i < 8)
+        init_pair(i + 1, i, COLOR_BLACK);
+}
+
+static void color_shift(int *rgb, int *rgb_up)
+{
+    *rgb_up = (*rgb >= COLOR_MAX && *rgb_up == 1) ? -1 : *rgb_up;
+    *rgb_up = (*rgb <= COLOR_MIN && *rgb_up == -1) ? 1 : *rgb_up;
     *rgb += *rgb_up * COLOR_SHIFT_STEP;
-    if (*rgb > 200) *rgb = 200;
-    if (*rgb < 0) *rgb = 0;
+    if (*rgb > COLOR_MAX) *rgb = COLOR_MAX;
+    if (*rgb < COLOR_MIN) *rgb = COLOR_MIN;
 }
 
 void colors_shift()
@@ -53,7 +62,7 @@ void colors_shift()
     colors_apply();
 }
 
-void color_init(int r, int g, int b)
+static void color_init(int r, int g, int b)
 {
     color.r = r;
     color.g = g;
@@ -64,33 +73,24 @@ void color_init(int r, int g, int b)
     color.cycles = 0;
 }
 
-void void_color_init()
-{
-    int i;
-
-    i = -1;
-    while (++i < 8)
-        init_pair(i + 1, i, COLOR_BLACK);
-}
-
 void colors_init(char user_color)
 {
-    void_color_init();
-    if (user_color == 'w') color_init(200, 200, 200);
-    else if (user_color == 'g') color_init(0,   200, 0);
-    else if (user_color == 'G') color_init(0,   100, 0);
-    else if (user_color == 'r') color_init(200, 0,   0);
-    else if (user_color == 'R') color_init(100, 0,   0);
-    else if (user_color == 'B') color_init(0,   0,   200);
-    else if (user_color == 'b') color_init(0,   200, 200);
-    else if (user_color == 'm') color_init(200, 0,   200);
-    else if (user_color == 'M') color_init(100, 0,   100);
-    else if (user_color == 'p') color_init(100, 0,   100);
-    else if (user_color == 'y') color_init(200, 200, 0);
-    else if (user_color == 'Y') color_init(200, 200, 100);
-    else if (user_color == 'o') color_init(200, 100, 0);
-    else if (user_color == 'O') color_init(100, 50,  0);
-    else if (user_color == '?') color_init(rand() % 200, rand() % 200, rand() % 200);
+    void_color_apply();
+    if (user_color == 'w') color_init(COLOR_MAX, COLOR_MAX, COLOR_MAX);
+    else if (user_color == 'g') color_init(COLOR_MIN,   COLOR_MAX,   COLOR_MIN);
+    else if (user_color == 'G') color_init(COLOR_MIN,   COLOR_MAX/2, COLOR_MIN);
+    else if (user_color == 'r') color_init(COLOR_MAX,   COLOR_MIN,   COLOR_MIN);
+    else if (user_color == 'R') color_init(COLOR_MAX/2, COLOR_MIN,   COLOR_MIN);
+    else if (user_color == 'B') color_init(COLOR_MIN,   COLOR_MIN,   COLOR_MAX);
+    else if (user_color == 'b') color_init(COLOR_MIN,   COLOR_MAX,   COLOR_MAX);
+    else if (user_color == 'm') color_init(COLOR_MAX,   COLOR_MIN,   COLOR_MAX);
+    else if (user_color == 'M') color_init(COLOR_MAX/2, COLOR_MIN,   COLOR_MAX/2);
+    else if (user_color == 'p') color_init(COLOR_MAX/2, COLOR_MIN,   COLOR_MAX/2);
+    else if (user_color == 'y') color_init(COLOR_MAX,   COLOR_MAX,   COLOR_MIN);
+    else if (user_color == 'Y') color_init(COLOR_MAX,   COLOR_MAX,   COLOR_MAX/2);
+    else if (user_color == 'o') color_init(COLOR_MAX,   COLOR_MAX/2, COLOR_MIN);
+    else if (user_color == 'O') color_init(COLOR_MAX/2, COLOR_MAX/4, COLOR_MIN);
+    else if (user_color == '?') color_init(rand() % COLOR_MAX, rand() % COLOR_MAX, rand() % COLOR_MAX);
     colors_apply();
 }
 

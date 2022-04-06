@@ -29,6 +29,8 @@
 
 # define COLOR_SHIFT_RATE 0
 # define COLOR_SHIFT_STEP 2
+# define COLOR_MIN 0
+# define COLOR_MAX 200
 
 # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 3, 6}
 
