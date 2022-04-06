@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
+#include <stdio.h>
 
-static int cycles = 0;
 t_color color;
 
 void colors_apply()
@@ -39,9 +39,9 @@ void colors_shift()
 
     if (COLOR_SHIFT_STEP == 0)
         return ;
-    if (COLOR_SHIFT_RATE > 0 && cycles % COLOR_SHIFT_RATE != 0)
+    if (COLOR_SHIFT_RATE > 0 && color.cycles % COLOR_SHIFT_RATE != 0)
     {
-        cycles++;
+        color.cycles++;
         return ;
     }
     selected_color = rand() % 3;
@@ -51,8 +51,9 @@ void colors_shift()
         color_shift(&color.g, &color.g_up);
     if (selected_color == 2)
         color_shift(&color.b, &color.b_up);
-    cycles++;
+    color.cycles++;
     colors_apply();
+    dprintf(1, "cycles = %d\b", color.cycles);
 }
 
 void color_init(int r, int g, int b)
@@ -63,6 +64,7 @@ void color_init(int r, int g, int b)
     color.r_up = rand() % 2 ? -1 : 1;
     color.g_up = rand() % 2 ? -1 : 1;
     color.b_up = rand() % 2 ? -1 : 1;
+    color.cycles = 0;
 }
 
 void void_color_init()

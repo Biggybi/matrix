@@ -58,6 +58,7 @@ typedef struct  s_color
 	int r_up;
 	int g_up;
 	int b_up;
+	int cycles;
 }				t_color;
 
 extern t_color color;
