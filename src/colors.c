@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include <stdio.h>
 
 static int cycles = 0;
 t_color color;
@@ -58,7 +57,14 @@ void colors_shift()
 
 void color_init(int r, int g, int b)
 {
-    color = (t_color){.r = r, .g = g, .b = b, .r_up = -1, .g_up = -1, .b_up = -1};
+    t_color color;
+
+    color.r = r;
+    color.g = g;
+    color.b = b;
+    color.r_up = rand() % 2 ? -1 : 1;
+    color.g_up = rand() % 2 ? -1 : 1;
+    color.b_up = rand() % 2 ? -1 : 1;
 }
 
 void void_color_init()
