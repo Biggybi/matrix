@@ -98,7 +98,7 @@ static int matrix_show(t_cell matrix[MAXX][MAXY])
 	return (nb_shown);
 }
 
-void matrix_run()
+void matrix_run(int color_shift)
 {
 	t_cell	matrix[MAXX][MAXY];
 	t_drip	drips[DRIPS];
@@ -111,6 +111,7 @@ void matrix_run()
 	nb_shown = 1;
 	while (nb_shown)
 	{
+		if (color_shift) colors_shift();
 		matrix_update(matrix, drips, prob_spawn);
 		prob_spawn -= DECAY_STEP;
 		nb_shown = matrix_show(matrix);

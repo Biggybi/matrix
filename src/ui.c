@@ -25,7 +25,7 @@ int ui_init(WINDOW *uiwindow, char user_color)
 		dprintf(1, "Color support not available.");
 		return (0);
 	}
-	colors_set(user_color);
+	colors_init(user_color);
 	return (1);
 }
 

@@ -35,11 +35,10 @@
 # define DECAY_STEP 0.000
 # define DECAY_DELAY 10000L
 
-# define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 3, 6}
-/* # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6} */
-/* # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 4, 7} */
-/* # define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 6, 9} */
+# define COLOR_SHIFT_RATE 0
+# define COLOR_SHIFT_STEP 2
 
+# define COLOR_MAP {1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 3, 6}
 typedef struct	s_cell
 {
 	char		character;
@@ -54,10 +53,20 @@ typedef struct	s_drip
 	int			bright;
 }				t_drip;
 
+typedef struct  s_color
+{
+	int r;
+	int g;
+	int b;
+}				t_color;
+
+extern t_color color;
+
 int		ui_init(WINDOW *uiwindow, char user_color);
 void	ui_clean();
 
-void	colors_set(char user_color);
+void	colors_init(char user_color);
+void	colors_shift();
 
 void	matrix_run();
 
