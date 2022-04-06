@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
+#include <stdio.h>
 
 static int cycles = 0;
 t_color color;
@@ -26,8 +27,8 @@ void colors_apply()
 
 void color_shift(int *rgb, int *rgb_up)
 {
-    *rgb_up = (*rgb_up >= 200 && *rgb_up == 1) ? -1 : *rgb_up;
-    *rgb_up = (*rgb_up <= 0 && *rgb_up == -1) ? 1 : *rgb_up;
+    *rgb_up = (*rgb >= 200 && *rgb_up == 1) ? -1 : *rgb_up;
+    *rgb_up = (*rgb <= 0 && *rgb_up == -1) ? 1 : *rgb_up;
     *rgb += *rgb_up * COLOR_SHIFT_STEP;
     if (*rgb > 200) *rgb = 200;
     if (*rgb < 0) *rgb = 0;
@@ -57,7 +58,7 @@ void colors_shift()
 
 void color_init(int r, int g, int b)
 {
-    color = (t_color){.r = r, .g = g, .b = b, .r_up = 1, .g_up = 1, .b_up = 1};
+    color = (t_color){.r = r, .g = g, .b = b, .r_up = -1, .g_up = -1, .b_up = -1};
 }
 
 void void_color_init()
