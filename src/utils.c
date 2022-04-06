@@ -14,11 +14,11 @@
 
 double rand_zero_to_one()
 {
-	return ((double)rand() / (double)RAND_MAX);
+    return ((double)rand() / (double)RAND_MAX);
 }
 
 char randchar()
 {
-	return (33 + (rand() % (127 - 32)));
+    return (33 + (rand() % (127 - 32)));
 }
 
