@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "matrix.h"
-
 t_color color;
 
 void colors_apply()
@@ -94,3 +93,4 @@ void colors_init(char user_color)
     else if (user_color == '?') color_init(rand() % 200, rand() % 200, rand() % 200);
     colors_apply();
 }
+

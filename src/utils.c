@@ -26,3 +26,4 @@ int rand_color()
 {
 	return (rand() % 200);
 }
+

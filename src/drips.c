@@ -11,8 +11,8 @@ void drip_init(t_drip drips[])
 
 void drips_add(t_drip drips[], float prob_spawn)
 {
-    int        i;
-    int        margin;
+    int i;
+    int margin;
 
     margin = rand() % (MAXY - MAX_TOP_MARGIN);
     if (rand_zero_to_one() > prob_spawn)
@@ -31,7 +31,7 @@ void drips_add(t_drip drips[], float prob_spawn)
 
 void drips_update(t_cell matrix[MAXX][MAXY], t_drip drips[])
 {
-    int        i;
+    int i;
 
     i = -1;
     while (++i < DRIPS)

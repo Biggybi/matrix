@@ -28,8 +28,8 @@ static void init_char(t_cell *cell)
 
 static void matrix_set(t_cell matrix[MAXX][MAXY])
 {
-    int        i;
-    int        j;
+    int i;
+    int j;
 
     i = -1;
     while (++i < MAXX)
@@ -57,8 +57,8 @@ static void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_
 
 static void matrix_init(t_cell matrix[MAXX][MAXY])
 {
-    int        i;
-    int        j;
+    int i;
+    int j;
 
     i = -1;
     while (++i < MAXX)
@@ -100,10 +100,10 @@ static int matrix_show(t_cell matrix[MAXX][MAXY])
 
 void matrix_run(int color_shift)
 {
-    t_cell    matrix[MAXX][MAXY];
-    t_drip    drips[DRIPS];
-    float    prob_spawn;
-    int        nb_shown;
+    t_cell matrix[MAXX][MAXY];
+    t_drip drips[DRIPS];
+    float prob_spawn;
+    int nb_shown;
 
     prob_spawn = PROB_SPAWN;
     matrix_init(matrix);
