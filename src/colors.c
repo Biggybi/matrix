@@ -43,7 +43,11 @@ static void color_shift(int *rgb, int *rgb_up)
 void colors_shift()
 {
     int selected_color;
-
+	int *selection[3][2] = {
+		{&color.r, &color.r_up},
+		{&color.g, &color.g_up},
+		{&color.b, &color.b_up}
+	};
     if (COLOR_SHIFT_STEP == 0)
         return ;
     if (COLOR_SHIFT_RATE > 0 && color.cycles % COLOR_SHIFT_RATE != 0)
@@ -52,12 +56,7 @@ void colors_shift()
         return ;
     }
     selected_color = rand() % 3;
-    if (selected_color == 0)
-        color_shift(&color.r, &color.r_up);
-    if (selected_color == 1)
-        color_shift(&color.g, &color.g_up);
-    if (selected_color == 2)
-        color_shift(&color.b, &color.b_up);
+	color_shift(selection[selected_color][0], selection[selected_color][1]);
     color.cycles++;
     colors_apply();
 }
