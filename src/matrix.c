@@ -50,7 +50,6 @@ static void matrix_update(t_cell matrix[MAXX][MAXY], t_drip drips[], float prob_
     i = -1;
     while (++i < SPEED_SPAWN)
         drips_add(drips, prob_spawn);
-    prob_spawn--;
     drips_update(matrix, drips);
     matrix_set(matrix);
 }
