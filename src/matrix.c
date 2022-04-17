@@ -14,9 +14,9 @@
 
 static void intensity_reduce(t_cell *cell)
 {
-    if ((cell->intensity == MAX_INTENSITY) && (rand_zero_to_one() < PROB_DIM_MAXED))
+    if (cell->intensity == MAX_INTENSITY && rand_zero_to_one() < PROB_DIM_MAXED)
         cell->intensity--;
-    else if ((cell->intensity > 0) && (rand_zero_to_one() < PROB_DIM))
+    else if (cell->intensity > 0 && rand_zero_to_one() < PROB_DIM)
         cell->intensity--;
 }
 
