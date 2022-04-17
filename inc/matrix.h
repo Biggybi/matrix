@@ -6,6 +6,8 @@
 # include <stdlib.h>
 # include <time.h>
 
+# define COMMAND_SHIFT 's'
+
 # define REFRESH 50000L
 
 # define MAX_INTENSITY 13
