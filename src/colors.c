@@ -46,8 +46,9 @@ void colors_shift()
 	int *selection[3][2] = {
 		{&color.r, &color.r_up},
 		{&color.g, &color.g_up},
-		{&color.b, &color.b_up}
+		{&color.b, &color.b_up},
 	};
+
     if (COLOR_SHIFT_STEP == 0)
         return ;
     if (COLOR_SHIFT_RATE > 0 && color.cycles % COLOR_SHIFT_RATE != 0)
