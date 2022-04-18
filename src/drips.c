@@ -37,6 +37,8 @@ void drips_update(t_cell matrix[MAXX][MAXY], t_drip drips[])
     while (++i < DRIPS)
         if (drips[i].live)
         {
+            if (rand_zero_to_one() < PROB_NOMOVE)
+                drips[i].live = 0;
             if (drips[i].bright)
                 matrix[drips[i].x][drips[i].y].intensity = MAX_INTENSITY;
             else

@@ -19,6 +19,8 @@
 # define MAX_TOP_MARGIN 0
 # define PROB_SPAWN_MIDDLE 0.2
 
+# define PROB_NOMOVE 0.05
+
 # define DRIPS 100000
 # define SPEED_SPAWN 6
 # define PROB_SPAWN .95
