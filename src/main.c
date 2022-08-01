@@ -15,7 +15,7 @@
 int main(int ac, char **av)
 {
     WINDOW *uiwindow = 0;
-    char user_color = (ac > 1) ? av[1][0] : 'g';;
+    char user_color = (ac > 1) ? av[1][0] : 'g';
     int color_shift = (ac > 2 && av[2][0] == COMMAND_SHIFT);
 
     srand(time(NULL));
