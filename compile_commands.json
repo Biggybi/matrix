@@ -1,0 +1,104 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/utils.o",
+      "src/utils.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/utils.c",
+    "output": "/data/work/matrix/obj/utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/drips.o",
+      "src/drips.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/drips.c",
+    "output": "/data/work/matrix/obj/drips.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/main.c",
+    "output": "/data/work/matrix/obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/matrix.o",
+      "src/matrix.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/matrix.c",
+    "output": "/data/work/matrix/obj/matrix.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/colors.o",
+      "src/colors.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/colors.c",
+    "output": "/data/work/matrix/obj/colors.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-I",
+      "inc/",
+      "-o",
+      "obj/ui.o",
+      "src/ui.c"
+    ],
+    "directory": "/data/work/matrix",
+    "file": "/data/work/matrix/src/ui.c",
+    "output": "/data/work/matrix/obj/ui.o"
+  }
+]
